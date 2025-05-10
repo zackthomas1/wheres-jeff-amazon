@@ -6,6 +6,7 @@ import ReactDOM from "react-dom/client";
 import { AuthProvider } from "react-oidc-context";
 import './index.css'
 import App from './App.jsx'
+import CanvasClickApp from './CanvasClickApp';
 
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.us-west-2.amazonaws.com/us-west-2_YZDde7yWa",

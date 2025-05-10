@@ -1,18 +1,52 @@
 import React, { useRef, useEffect, useState } from "react";
-import imageSrc from './assets/wheresjeff.png';
+import imageSrcA from './assets/wheresjeff.png';
+
+const mockGameRounds = [
+  {
+    image: imageSrcA,
+    coordinates: { 
+      x: 261,
+      y: 400
+    },
+    toleranceRadiusX: 120,
+    toleranceRadiusY: 220,
+    difficulty: 'easy'
+  }
+];
+
+const ClickMessage = ({ status, message }) => {
+  let spanStyle = null;
+
+  switch (status)
+  {
+    case 'success':
+      spanStyle = { backgroundColor: 'green' };
+      break;
+    case 'failure':
+      spanStyle = { backgroundColor: 'red' };
+      break;
+  }// end switch (status)
+
+  return (
+    <span style={spanStyle}>
+      {message}
+    </span>
+  );
+};
 
 const CanvasClickApp = () => {
   const canvasRef = useRef(null);
-  const [clicks, setClicks] = useState([]);
+  const [gameRound, setGameRound] = useState(mockGameRounds[0]);
+  const [clickMessage, setClickMessage] = useState(null);
 
-  // const imageSrc = "./assets/wheresjeff.png"; // place your image in the public folder or import it
+  // const imageSrcA = "./assets/wheresjeff.png"; // place your image in the public folder or import it
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
     const img = new Image();
-    img.src = imageSrc;
+    img.src = gameRound.image;
     img.onload = () => {
       canvas.width = img.width;
       canvas.height = img.height;
@@ -27,20 +61,26 @@ const CanvasClickApp = () => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    setClicks([...clicks, { x: Math.round(x), y: Math.round(y) }]);
+    const { coordinates, toleranceRadiusX, toleranceRadiusY } = gameRound;
+    const { x: targetX, y: targetY } = coordinates;
+
+    if ((Math.abs(x - targetX) < toleranceRadiusX) && (Math.abs(y - targetY) < toleranceRadiusY))
+    {
+      setClickMessage(<ClickMessage status="success" message="You found Jeff!" />);
+    }
+    else
+    {
+      setClickMessage(<ClickMessage status="failure" message="That's not Jeff!" />);
+    }
   };
 
   return (
     <div>
       <h2>Click on the image to get coordinates</h2>
       <canvas ref={canvasRef} onClick={handleCanvasClick} style={{ border: "1px solid black" }} />
-      <ul>
-        {clicks.map((click, index) => (
-          <li key={index}>
-            Click {index + 1}: (x: {click.x}, y: {click.y})
-          </li>
-        ))}
-      </ul>
+      <p>
+        {clickMessage}
+      </p>
     </div>
   );
 };

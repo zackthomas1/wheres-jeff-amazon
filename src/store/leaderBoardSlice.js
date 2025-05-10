@@ -20,9 +20,6 @@ const gameSlice = createSlice({
 });
 
 export const {
-  startNewGame,
-  setRound,
-  setTargetCoordinates,
-  setImageSrc,
+  addUserScore,
 } = gameSlice.actions;
 export default gameSlice.reducer;

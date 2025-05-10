@@ -1,40 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  currentRound: 1,
-  imageSrc: '',
-  targetCoordinates: { x: 0, y: 0 },
-  toleranceRadiusX: 0,
-  toleranceRadiusY: 0,
-  difficulty: 'easy',
-};
+const initialState = null;
 
 const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    startNewGame(state, action) {
+    startFirstGame(state, action) {
+      ...action.payload,
+        currentRound: 1
+    },
+    startNextGame(state, action) {
+      const { currentRound } = state;
       return {
         ...action.payload,
-        currentRound: 1,
+        currentRound: currentRound + 1,
       };
-    },
-    setRound(state, action) {
-      state.currentRound = action.payload;
-    },
-    setTargetCoordinates(state, action) {
-      state.targetCoordinates = action.payload;
-    },
-    setImageSrc(state, action) {
-      state.imageSrc = action.payload;
     },
   },
 });
 
 export const {
-  startNewGame,
-  setRound,
-  setTargetCoordinates,
-  setImageSrc,
+  startFirstGame,
+  startNextGame,
 } = gameSlice.actions;
 export default gameSlice.reducer;

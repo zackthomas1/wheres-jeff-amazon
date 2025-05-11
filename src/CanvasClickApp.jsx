@@ -2,27 +2,107 @@ import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setNewGameRound } from './store/gameSlice';
-import imageSrcA from './assets/wheresjeff.png';
+
+import imageSrcA from './assets/i_spy_demo_00.png';
+import imageSrcB from './assets/i_spy_demo_01.png';
+import imageSrcC from './assets/i_spy_demo_02.png';
+import imageSrcD from './assets/i_spy_demo_03.png';
 
 const mockGameRounds = [
   {
     imageSrc: imageSrcA,
-    coordinates: { 
-      x: 261,
-      y: 400
-    },
-    toleranceRadiusX: 120,
-    toleranceRadiusY: 220,
+    targets: [
+      {
+        name: "Red Ball",
+        coordinates: { 
+          x: 261,
+          y: 400
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+      {
+        name: "Rubber Duck",
+        coordinates: { 
+          x: 361,
+          y: 300
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+    ],
     difficulty: 'easy'
   },
   {
-    imageSrc: 'https://www.providencejournal.com/gcdn/authoring/2019/01/09/NPRJ/ghows-PJ-7f0e9188-00cb-1a2a-e053-0100007f329a-6d5b7ebf.jpeg?width=660&height=497&fit=crop&format=pjpg',
-    coordinates: { 
-      x: 200,
-      y: 200
-    },
-    toleranceRadiusX: 100,
-    toleranceRadiusY: 200,
+    imageSrc: imageSrcB,
+    targets: [
+      {
+        name: "Red Ball",
+        coordinates: { 
+          x: 261,
+          y: 400
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+      {
+        name: "Rubber Duck",
+        coordinates: { 
+          x: 361,
+          y: 300
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+    ],
+    difficulty: 'easy'
+  },
+  {
+    imageSrc: imageSrcC,
+    targets: [
+      {
+        name: "Red Ball",
+        coordinates: { 
+          x: 261,
+          y: 400
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+      {
+        name: "Rubber Duck",
+        coordinates: { 
+          x: 361,
+          y: 300
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+    ],
+    difficulty: 'easy'
+  },
+  {
+    imageSrc: imageSrcD,
+    targets: [
+      {
+        name: "Red Ball",
+        coordinates: { 
+          x: 261,
+          y: 400
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+      {
+        name: "Rubber Duck",
+        coordinates: { 
+          x: 361,
+          y: 300
+        },
+        toleranceRadiusX: 120,
+        toleranceRadiusY: 220,
+      },
+    ],
     difficulty: 'easy'
   },
 ];
@@ -93,7 +173,7 @@ const CanvasClickApp = () => {
 
       setIsClickEnabled(true);
       setClickMessage(null);
-      setHeadInstruction("Find Jeff Amazon in the image");
+      setHeadInstruction("Find the named objects in the image");
     }
   }, [game]);
 
@@ -111,22 +191,26 @@ const CanvasClickApp = () => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const { coordinates, toleranceRadiusX, toleranceRadiusY } = gameRound;
-    const { x: targetX, y: targetY } = coordinates;
+    const { targets } = gameRound;
 
-    if ((Math.abs(x - targetX) < toleranceRadiusX) && (Math.abs(y - targetY) < toleranceRadiusY))
-    {
-      setClickMessage(<ClickMessage status="success" message="You found Jeff!" />);
+    let targetFound = false;
 
-      setIsClickEnabled(false);
-      setHeadInstruction("Loading new image ...");
-      setTimeout(() => {
-        handleNewGameRound(fetchNewGameRound());
-      }, 1000);
-    }
-    else
+    for (const target of targets)
     {
-      setClickMessage(<ClickMessage status="failure" message="That's not Jeff!" />);
+      const { name, coordinates, toleranceRadiusX, toleranceRadiusY } = target;
+      const { x: targetX, y: targetY } = coordinates;
+
+      if ((Math.abs(x - targetX) < toleranceRadiusX) && (Math.abs(y - targetY) < toleranceRadiusY))
+      {
+        setClickMessage(<ClickMessage status="success" message={`You found ${name}!`} />);
+        targetFound = true;
+        break;
+      }
+    }// end for (target of targets)
+    
+    if (! targetFound)
+    {
+        setClickMessage(<ClickMessage status="failure" message={`Nothing there`} />);
     }
   };
 

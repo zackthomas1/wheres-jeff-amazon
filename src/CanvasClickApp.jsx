@@ -92,9 +92,19 @@ const mockGameRounds = [
 ];
 
 // TODO: replace with API call
-const fetchNewGameRound = () => {
-  const index = Math.floor(Math.random() * mockGameRounds.length);
-  return mockGameRounds[index];
+const fetchNewGameRound = async() => {
+  const db_api_end_point = "https://y05g5q0w6c.execute-api.us-west-2.amazonaws.com/prod/game-round"; 
+  const resp = await fetch(db_api_end_point); 
+  if (resp.ok){
+    const resp_obj = await resp.json(); 
+    const s3_key = resp_obj.s3_image_key;
+    const s3_api_end_point = `https://y05g5q0w6c.execute-api.us-west-2.amazonaws.com/prod/get-image-from-s3/${s3_key}`;
+    resp_obj["imageSrc"] = s3_api_end_point;
+    return resp_obj;
+  }else{
+    return null; 
+  }
+
 };
 
 const ClickMessage = ({ status, message }) => {

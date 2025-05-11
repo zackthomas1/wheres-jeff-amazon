@@ -150,7 +150,7 @@ const CanvasClickApp = () => {
 
   // Initialize canvas every time a new game round is loaded
   useEffect(() => {
-    if (game.length > 0)
+    if ((game.length > 0) && (canvasRef !== null) && (canvasRef.current !== null))
     {
       // Get latest round
       const gameRound = game[game.length - 1];

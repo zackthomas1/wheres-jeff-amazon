@@ -221,12 +221,12 @@ const CanvasClickApp = () => {
       {
         if (foundTargets.hasOwnProperty(name))
         {
-          setClickMessage(<ClickMessage status="failure" message={`You already found ${name}`} />);
+          setClickMessage(<ClickMessage status="failure" message={`You already found the ${name}`} />);
         }
         else
         {
           setFoundTargets({ ...foundTargets, [name]: true });
-          setClickMessage(<ClickMessage status="success" message={`You found ${name}!`} />);
+          setClickMessage(<ClickMessage status="success" message={`You found the ${name}!`} />);
         }
 
         targetFound = true;
@@ -243,6 +243,10 @@ const CanvasClickApp = () => {
   return (
     <div>
       <h2>{headInstruction}</h2>
+      <h3>I spy with my little eye...</h3>
+      <ul>
+        {gameRound?.targets.map(({ name }) => (<li>A {name}</li>))}
+      </ul>
       <canvas ref={canvasRef} onClick={handleCanvasClick} style={{ border: "1px solid black" }} />
       <p>
         {clickMessage}

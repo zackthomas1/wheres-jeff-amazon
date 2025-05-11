@@ -15,20 +15,20 @@ const mockGameRounds = [
       {
         name: "Red Ball",
         coordinates: { 
-          x: 261,
-          y: 400
+          x: 725,
+          y: 1340
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
         coordinates: { 
-          x: 361,
-          y: 300
+          x: 590,
+          y: 1230
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
     ],
     difficulty: 'easy'
@@ -39,20 +39,20 @@ const mockGameRounds = [
       {
         name: "Red Ball",
         coordinates: { 
-          x: 261,
-          y: 400
+          x: 195,
+          y: 1220
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
         coordinates: { 
-          x: 361,
-          y: 300
+          x: 560,
+          y: 900
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
     ],
     difficulty: 'easy'
@@ -63,20 +63,20 @@ const mockGameRounds = [
       {
         name: "Red Ball",
         coordinates: { 
-          x: 261,
-          y: 400
+          x: 330,
+          y: 1380
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
         coordinates: { 
-          x: 361,
-          y: 300
+          x: 390,
+          y: 880
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
     ],
     difficulty: 'easy'
@@ -87,20 +87,20 @@ const mockGameRounds = [
       {
         name: "Red Ball",
         coordinates: { 
-          x: 261,
-          y: 400
+          x: 340,
+          y: 1020
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
         coordinates: { 
-          x: 361,
-          y: 300
+          x: 290,
+          y: 1180
         },
-        toleranceRadiusX: 120,
-        toleranceRadiusY: 220,
+        toleranceRadiusX: 100,
+        toleranceRadiusY: 100,
       },
     ],
     difficulty: 'easy'

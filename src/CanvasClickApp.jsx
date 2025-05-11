@@ -232,19 +232,26 @@ const CanvasClickApp = () => {
     }
   };
 
-  return (
-    <div>
-      <h2>{headInstruction}</h2>
-      <h3>I spy with my little eye...</h3>
-      <ul>
-        {gameRound?.targets.map(({ name }) => (<li>A {name}</li>))}
-      </ul>
-      <canvas ref={canvasRef} onClick={handleCanvasClick} style={{ border: "1px solid black" }} />
-      <p>
-        {clickMessage}
-      </p>
-    </div>
-  );
+  if (gameRound && gameRound.targets)
+  {
+    return (
+      <div>
+        <h2>{headInstruction}</h2>
+        <h3>I spy with my little eye...</h3>
+        <ul>
+          {gameRound?.targets.map(({ name }) => (<li>A {name}</li>))}
+        </ul>
+        <canvas ref={canvasRef} onClick={handleCanvasClick} style={{ border: "1px solid black" }} />
+        <p>
+          {clickMessage}
+        </p>
+      </div>
+    );
+  }
+  else
+  {
+    return <p>Loading ...</p>
+  }
 };
 
 export default CanvasClickApp;

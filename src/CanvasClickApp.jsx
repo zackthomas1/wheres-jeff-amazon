@@ -142,8 +142,8 @@ const CanvasClickApp = () => {
   };
 
   // Get initial game round
-  useEffect(() => {
-    const gameRound = fetchNewGameRound();
+  useEffect(async () => {
+    const gameRound = await fetchNewGameRound();
 
     handleNewGameRound(gameRound);
   }, []);

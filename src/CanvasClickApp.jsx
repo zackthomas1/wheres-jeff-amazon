@@ -141,6 +141,7 @@ const CanvasClickApp = () => {
   const [clickMessage, setClickMessage] = useState(null);
   const [isClickEnabled, setIsClickEnabled] = useState(false);
   const [headInstruction, setHeadInstruction] = useState(null);
+  const [foundTargets, setFoundTargets] = useState({});
 
   // const imageSrcA = "./assets/wheresjeff.png"; // place your image in the public folder or import it
   const handleNewGameRound = (newGame) => {
@@ -179,6 +180,22 @@ const CanvasClickApp = () => {
 
   const gameRound = game[game.length - 1];
 
+  // check if we've found all targets
+  useEffect(() => {
+    if ((gameRound) && (Object.keys(foundTargets).length == gameRound.targets.length))
+    {
+      // Move to next round
+      setIsClickEnabled(false);
+      setFoundTargets({});
+      setHeadInstruction("Loading new image ...");
+      setClickMessage(<ClickMessage status="success" message="All targets found!" />);
+
+      setTimeout(() => {
+        handleNewGameRound(fetchNewGameRound());
+      }, 1000);
+    }
+  }, [foundTargets]);
+
   const handleCanvasClick = (event) => {
     if (! isClickEnabled)
     {
@@ -202,7 +219,16 @@ const CanvasClickApp = () => {
 
       if ((Math.abs(x - targetX) < toleranceRadiusX) && (Math.abs(y - targetY) < toleranceRadiusY))
       {
-        setClickMessage(<ClickMessage status="success" message={`You found ${name}!`} />);
+        if (foundTargets.hasOwnProperty(name))
+        {
+          setClickMessage(<ClickMessage status="failure" message={`You already found ${name}`} />);
+        }
+        else
+        {
+          setFoundTargets({ ...foundTargets, [name]: true });
+          setClickMessage(<ClickMessage status="success" message={`You found ${name}!`} />);
+        }
+
         targetFound = true;
         break;
       }

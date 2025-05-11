@@ -13,10 +13,12 @@
     "@aws-sdk/client-bedrock": "^3.806.0",
     "@aws-sdk/client-cognito-identity": "^3.806.0",
     "@aws-sdk/credential-provider-cognito-identity": "^3.806.0",
+    "@reduxjs/toolkit": "^2.8.1",
     "oidc-client-ts": "^3.2.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-oidc-context": "^3.3.0"
+    "react-oidc-context": "^3.3.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

@@ -94,7 +94,6 @@ const mockGameRounds = [
 // TODO: replace with API call
 const fetchNewGameRound = () => {
   const index = Math.floor(Math.random() * mockGameRounds.length);
-  image = 
   return mockGameRounds[index];
 };
 

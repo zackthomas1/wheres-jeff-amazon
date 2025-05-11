@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: UserProfileState = {
+const initialState = {
   username: '',
   cumulativeScore: 0,
 };

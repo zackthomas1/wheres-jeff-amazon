@@ -1,27 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = null;
+// An array of game rounds
+const initialState = [];
 
 const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    startFirstGame(state, action) {
-      ...action.payload,
-        currentRound: 1
-    },
-    startNextGame(state, action) {
-      const { currentRound } = state;
-      return {
-        ...action.payload,
-        currentRound: currentRound + 1,
-      };
+    setNewGameRound(state, action) {
+      return [
+        ...state,
+        action.payload
+      ];
     },
   },
 });
 
 export const {
-  startFirstGame,
-  startNextGame,
+  setNewGameRound,
 } = gameSlice.actions;
 export default gameSlice.reducer;

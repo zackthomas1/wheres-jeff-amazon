@@ -14,19 +14,15 @@ const mockGameRounds = [
     targets: [
       {
         name: "Red Ball",
-        coordinates: { 
-          x: 725,
-          y: 1340
-        },
+        coordX: 725,
+        coordY: 1340,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
-        coordinates: { 
-          x: 590,
-          y: 1230
-        },
+        coordX: 590,
+        coordY: 1230,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
@@ -38,19 +34,15 @@ const mockGameRounds = [
     targets: [
       {
         name: "Red Ball",
-        coordinates: { 
-          x: 195,
-          y: 1220
-        },
+        coordX: 195,
+        coordY: 1220,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
-        coordinates: { 
-          x: 560,
-          y: 900
-        },
+        coordX: 560,
+        coordY: 900,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
@@ -62,19 +54,15 @@ const mockGameRounds = [
     targets: [
       {
         name: "Red Ball",
-        coordinates: { 
-          x: 330,
-          y: 1380
-        },
+        coordX: 330,
+        coordY: 1380,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
-        coordinates: { 
-          x: 390,
-          y: 880
-        },
+        coordX: 390,
+        coordY: 880,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
@@ -86,19 +74,15 @@ const mockGameRounds = [
     targets: [
       {
         name: "Red Ball",
-        coordinates: { 
-          x: 340,
-          y: 1020
-        },
+        coordX: 340,
+        coordY: 1020,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
       {
         name: "Rubber Duck",
-        coordinates: { 
-          x: 290,
-          y: 1180
-        },
+        coordX: 290,
+        coordY: 1180,
         toleranceRadiusX: 100,
         toleranceRadiusY: 100,
       },
@@ -214,10 +198,9 @@ const CanvasClickApp = () => {
 
     for (const target of targets)
     {
-      const { name, coordinates, toleranceRadiusX, toleranceRadiusY } = target;
-      const { x: targetX, y: targetY } = coordinates;
+      const { name, coordX, coordY, toleranceRadiusX, toleranceRadiusY } = target;
 
-      if ((Math.abs(x - targetX) < toleranceRadiusX) && (Math.abs(y - targetY) < toleranceRadiusY))
+      if ((Math.abs(x - coordX) < toleranceRadiusX) && (Math.abs(y - coordY) < toleranceRadiusY))
       {
         if (foundTargets.hasOwnProperty(name))
         {
